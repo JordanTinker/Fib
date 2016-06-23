@@ -1,0 +1,49 @@
+# Fib
+A small program to compute the nth number of the fibonacci sequence. Can compute this number two different ways.
+
+==========
+Objective
+==========
+Compute the nth number in the fibonacci sequence two different ways. In doing so,
+this program demonstrates ability to compare multiple methods or algorithms that
+both sufficiently solve the same problem.
+
+==========
+Implementation
+==========
+The first way is using recursion. Finding the nth number involving adding the (n-1)th number
+and the (n-2)th number, recursively until reaching n = 0 and n = 1.
+
+The other way utilizes dynamic programming techniques. Initializes an array of n length
+with 0 and 1 in the first two spots. Then fills out the rest of the array by adding the two 
+previous elements. Returns the nth element in the array.
+==========
+Usage
+==========
+Compile with make. 'make clean' will clean up the executable.
+
+./fib NUMBER [-d -t]
+
+NUMBER: The nth number of the fibonacci sequence you want to find.
+-d: Uses the dynamic programming method instead of recursion.
+-t: Outputs the time it takes for the operation to complete. Useful for comparison.
+
+Note: NUMBER cannot be greater than 93, since the result is larger than unsigned long long max.
+
+==========
+Analysis
+==========
+Theoretically, we can compare the two methods in terms of big O.
+For recursion, each successive layer spawns two more layers.
+Therefore, the recursive method is O(2^n).
+The dynamic programming method is only O(n), since the operation
+time depends linearly on the length of the array, which is determined
+by n. From this we see that the array method is much better.
+
+Furthermore, from running the program with the -t command, we can
+compare experimental results. At around n = 37 or so, the program
+begins to have a noticable delay. At around n = 40 or so the delay
+is over 1s. By n = 50, the program takes 100s to execute, and is
+very impractical to use from there on out.
+The dynamic programming method aways takes less than a thousandth
+of a second to execute, all the way up to the max n = 93.
